@@ -23,8 +23,31 @@ router.get("/:id", async (req, res) => {
 })
 
 router.post("/", async (req, res) => {
-    const data = await Post.create(req.body)
-    res.json(data)
+    const token = req.headers?.authorization?.split(" ")[1];
+    console.log(token)
+    if (!token) {
+        return res
+            .status(403)
+            .json("you must be logged in to post");
+    }
+    try{
+        const tokenData = jwt.verify(token, process.env.JWT_SECRET)
+        try{
+            const data = Post.create({
+                title:req.body.title,
+                description:req.body.description,
+                img:req.body.img,
+                gallery:req.body.gallery,
+                UserId:tokenData.id
+            })
+            res.json("Post has been created")
+        }catch(err){
+            return res.status(500).json(err)
+        }
+        
+    }catch(err){
+        return res.status(403).json( "invalid token" );
+    }
 })
 
 router.delete("/:id", async (req, res) => {
@@ -58,7 +81,34 @@ router.delete("/:id", async (req, res) => {
 })
 
 router.put("/:id", async (req, res) => {
-    res.send("This is a test")
+    const token = req.headers?.authorization?.split(" ")[1];
+    if (!token) {
+        return res
+            .status(403)
+            .json("you must be logged in to post");
+    }
+    try{
+        const tokenData = jwt.verify(token, process.env.JWT_SECRET)
+        try{
+            const data = Post.update({
+                where:{
+                    id:req.params.id,
+                    UserId:tokenData.id
+                }
+            },{
+                title:req.body.title,
+                description:req.body.description,
+                img:req.body.img,
+                gallery:req.body.gallery,
+            })
+            res.json("Post has been updated")
+        }catch(err){
+            return res.status(500).json(err)
+        }
+        
+    }catch(err){
+        return res.status(403).json( "invalid token" );
+    }
 })
 
 module.exports = router;
