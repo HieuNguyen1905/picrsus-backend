@@ -13,6 +13,9 @@ pics-R-us was made to interact and explore pictures and posts of a certain inter
 Clone this repository to your local machine. 
 Have your mySQL server start and running.
 
+## Deployed Link
+https://picsrus.netlify.app/
+
 ## Usage
 From the start of the home page, you have various options of galleries to choose from the navigation bar. You also have the option to create a profile to be able to interact with other users on this site such as reacting to posts and being able to share and save to your own profile. There is then the option to log out afterwards.
 
@@ -47,7 +50,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-## Badges
-
-## Features
