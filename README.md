@@ -1,7 +1,7 @@
 # pics-R-us
 
 ## Description
-pics-R-us was made to interact and explore pictures and posts of a certain interest that is displayed through a gallery. This site allows users to create a profile, interact and react to any posts in any gallery, while being able to curate your own gallery of choice as well. 
+This is back-end server for pics-R-us project .pics-R-us was made to interact and explore pictures and posts of a certain interest that is displayed through a gallery. This site allows users to create a profile, interact and react to any posts in any gallery, while being able to curate your own gallery of choice as well. 
 
 ## Table of Contents
 - [Installation](#installation)
@@ -10,11 +10,14 @@ pics-R-us was made to interact and explore pictures and posts of a certain inter
 - [License](#license)
 
 ## Installation 
-Clone this repository to your local machine. 
+Clone this repository to your local machine.
+Type npm i to install all packages
+Change .evn.EXAMPLE to .env
 Have your mySQL server start and running.
 
 ## Usage
-From the start of the home page, you have various options of galleries to choose from the navigation bar. You also have the option to create a profile to be able to interact with other users on this site such as reacting to posts and being able to share and save to your own profile. There is then the option to log out afterwards.
+This server side will include User routes to serve the profile page, Authentification routes for login and signup pages, Post routes will let the front-end making GET, POST, DELETE or PUT request about posts.
+This application using SQL for relationship between table.
 
 ## Credits
 Collaborators - 
@@ -49,5 +52,3 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 ## Badges
-
-## Features
