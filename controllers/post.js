@@ -30,23 +30,23 @@ router.post("/", async (req, res) => {
             .status(403)
             .json("you must be logged in to post");
     }
-    try{
+    try {
         const tokenData = jwt.verify(token, process.env.JWT_SECRET)
-        try{
+        try {
             const data = Post.create({
-                title:req.body.title,
-                description:req.body.description,
-                img:req.body.img,
-                gallery:req.body.gallery,
-                UserId:tokenData.id
+                title: req.body.title,
+                description: req.body.description,
+                img: req.body.img,
+                gallery: req.body.gallery,
+                UserId: tokenData.id
             })
             res.json("Post has been created")
-        }catch(err){
+        } catch (err) {
             return res.status(500).json(err)
         }
-        
-    }catch(err){
-        return res.status(403).json( "invalid token" );
+
+    } catch (err) {
+        return res.status(403).json("invalid token");
     }
 })
 
@@ -62,12 +62,12 @@ router.delete("/:id", async (req, res) => {
         const foundPost = await Post.findByPk(req.params.id)
 
         if (!foundPost) {
-            return res.status(404).json( "no such post!" );
+            return res.status(404).json("no such post!");
         }
         if (foundPost.UserId !== tokenData.id) {
             return res
                 .status(403)
-                .json("you can only delete posts you created!" );
+                .json("you can only delete posts you created!");
         }
         const data = await Post.destroy({
             where: {
@@ -76,7 +76,7 @@ router.delete("/:id", async (req, res) => {
         })
         res.json(data);
     } catch (err) {
-        return res.status(403).json( "invalid token" );
+        return res.status(403).json("invalid token");
     }
 })
 
@@ -87,27 +87,29 @@ router.put("/:id", async (req, res) => {
             .status(403)
             .json("you must be logged in to post");
     }
-    try{
+    try {
         const tokenData = jwt.verify(token, process.env.JWT_SECRET)
-        try{
-            const data = Post.update({
-                where:{
-                    id:req.params.id,
-                    UserId:tokenData.id
-                }
-            },{
-                title:req.body.title,
-                description:req.body.description,
-                img:req.body.img,
-                gallery:req.body.gallery,
-            })
+        try {
+            const data = Post.update(
+                {
+                    title: req.body.title,
+                    description: req.body.description,
+                    img: req.body.img,
+                    gallery: req.body.gallery,
+                },
+                {
+                    where: {
+                        id: req.params.id,
+                        UserId: tokenData.id
+                    }
+                })
             res.json("Post has been updated")
-        }catch(err){
+        } catch (err) {
             return res.status(500).json(err)
         }
-        
-    }catch(err){
-        return res.status(403).json( "invalid token" );
+
+    } catch (err) {
+        return res.status(403).json("invalid token");
     }
 })
 
